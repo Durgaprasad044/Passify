@@ -1,29 +1,22 @@
 import React from 'react';
-import { Menu, Bell, Search, TrendingUp, Users, FileCheck, AlertCircle } from 'lucide-react';
+import { Bell, Search, TrendingUp, Users, FileCheck, AlertCircle } from 'lucide-react';
 import RequestForm from './RequestForm';
 import TrendCharts from './TrendCharts';
 import HistoryTable from './HistoryTable';
 import StatsCards from './StatsCards';
 
 interface DashboardProps {
-  onToggleSidebar: () => void;
   sidebarCollapsed: boolean;
 }
 
-const Dashboard: React.FC<DashboardProps> = ({ onToggleSidebar, sidebarCollapsed }) => {
+const Dashboard: React.FC<DashboardProps> = ({ sidebarCollapsed }) => {
   return (
     <div className="min-h-screen">
       {/* Header */}
       <header className="bg-[#16213E] border-b border-[#2E3C5A] px-6 py-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-4">
-            <button
-              onClick={onToggleSidebar}
-              className="p-2 hover:bg-[#2E3C5A] rounded-lg transition-colors duration-200 text-[#E6EDF7]"
-            >
-              <Menu size={20} />
-            </button>
-            <h2 className="text-[#E6EDF7] text-xl font-semibold">Student Request Dashboard</h2>
+            <h2 className="text-[#E6EDF7] text-xl font-semibold">📊 Student Request Dashboard</h2>
           </div>
           
           <div className="flex items-center space-x-4">
