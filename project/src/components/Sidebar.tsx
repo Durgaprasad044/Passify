@@ -86,12 +86,6 @@ const Sidebar: React.FC<SidebarProps> = ({ collapsed, onToggle, activeView, onVi
       
       {!collapsed && (
         <div className="absolute bottom-6 left-6 right-6">
-          {/* Separator */}
-          <div className="border-t border-[#2E3C5A] mb-4"></div>
-          <div className="text-center text-[#E6EDF7]/40 text-xs mb-4">
-            ───────────────────────
-          </div>
-          
           {/* Admin User Info */}
           <div className="bg-[#16213E] rounded-xl p-4 border border-[#2E3C5A]">
             <div className="flex items-center space-x-3">
