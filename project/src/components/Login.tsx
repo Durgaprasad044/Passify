@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
-import { Eye, EyeOff, Lock, Mail, User } from 'lucide-react';
+import { Eye, EyeOff, Lock, Mail, User, ArrowLeft } from 'lucide-react';
+import { useNotificationContext } from '../contexts/NotificationContext';
 
 interface LoginProps {
-  onLogin: (userData: any) => void;
+  onLoginSuccess: () => void;
+  onBack: () => void;
 }
 
-const Login: React.FC<LoginProps> = ({ onLogin }) => {
+const Login: React.FC<LoginProps> = ({ onLoginSuccess, onBack }) => {
   const [isLogin, setIsLogin] = useState(true);
   const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({
@@ -16,6 +18,7 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
   });
   const [errors, setErrors] = useState<any>({});
   const [isLoading, setIsLoading] = useState(false);
+  const { showNotification } = useNotificationContext();
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -79,7 +82,12 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
         loginTime: new Date().toISOString()
       };
       
-      onLogin(userData);
+      showNotification(
+        `${isLogin ? 'Login' : 'Account creation'} successful! Welcome ${userData.name}`,
+        'success'
+      );
+      
+      onLoginSuccess();
       setIsLoading(false);
     }, 1500);
   };
@@ -87,6 +95,15 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#0B0F1A] via-[#16213E] to-[#0B0F1A] flex items-center justify-center p-4">
       <div className="w-full max-w-md">
+        {/* Back Button */}
+        <button
+          onClick={onBack}
+          className="flex items-center space-x-2 text-[#E6EDF7]/60 hover:text-[#E6EDF7] transition-colors mb-6"
+        >
+          <ArrowLeft size={20} />
+          <span>Back to Home</span>
+        </button>
+
         {/* Logo/Header */}
         <div className="text-center mb-8">
           <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-[#1FE0BE] to-[#00B4D8] rounded-full mb-4">
